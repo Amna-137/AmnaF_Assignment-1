@@ -174,7 +174,7 @@ class DeliveryNote:
         }
 
 
-# Object Creation
+# creating object
 customer1 = Customer("Amna", "amna.fahed.05@hotmail.com", "123456789", "Das street", 202304185)
 item1 = Item(89, "makeup abg", 50.00, 1)
 order1 = DeliveryOrder(100, "REF123", "2025-03-05", 1.5, 55.50, OrderStatus.PROCESSING)
