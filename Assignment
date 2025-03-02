@@ -37,6 +37,15 @@ class Customer:
     def place_order(self):
         pass  # Function to place an order
 
+    def get_customer_details(self):
+        return {
+            "Customer Name": self.get_name(),
+            "Email": self.get_email(),
+            "Phone": self._phone,
+            "Address": self._address,
+            "Customer ID": self.get_customer_id(),
+        }
+
 
 class Item:
     def __init__(self, item_code, description, unit_price, quantity):
@@ -94,8 +103,7 @@ class DeliveryOrder:
         }
 
     def set_status(self, status):
-        if isinstance(status, OrderStatus):
-            self._status = status
+        self._status = status
 
 
 class Employee:
@@ -118,6 +126,12 @@ class Employee:
     def manage_items(self, order):
         pass  # Function to manage items in an order
 
+    def get_employee_details(self):
+        return {
+            "Employee Name": self.get_name(),
+            "Employee ID": self.get_employee_id()
+        }
+
 
 class DeliveryAgent(Employee):
     def __init__(self, agent_id, name):
@@ -133,6 +147,12 @@ class DeliveryAgent(Employee):
     def update_delivery_info(self, order_id):
         pass  # Function to update delivery info
 
+    def get_agent_details(self):
+        return {
+            "Agent Name": self.get_name(),
+            "Agent ID": self.get_agent_id(),
+        }
+
 
 class DeliveryNote:
     def __init__(self, note_id, reference_number, date):
@@ -147,7 +167,11 @@ class DeliveryNote:
         self._note_id = note_id
 
     def print_note(self):
-        pass  # Function to print the delivery note
+        return {
+            "Note ID": self.get_note_id(),
+            "Reference Number": self._reference_number,
+            "Date": self._date
+        }
 
 
 # Object Creation
@@ -155,9 +179,12 @@ customer1 = Customer("Amna", "amna.fahed.05@hotmail.com", "123456789", "Das stre
 item1 = Item(89, "makeup abg", 50.00, 1)
 order1 = DeliveryOrder(100, "REF123", "2025-03-05", 1.5, 55.50, OrderStatus.PROCESSING)
 order1.add_item(item1)
-
 delivery_agent = DeliveryAgent(101, "Mohammed")
 delivery_note = DeliveryNote(301, "AB260", "2025-03-05")
 
-print(order1.get_order_details())
 
+print(order1.get_order_details())
+print(customer1.get_customer_details())  # printing customer1 details
+print(delivery_agent.get_agent_details())  # printing delivery_agent details
+print(delivery_note.print_note())  # printing delivery note
+print(delivery_agent.get_employee_details())  # Printing employee details
