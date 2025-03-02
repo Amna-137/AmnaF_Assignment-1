@@ -1,1 +1,163 @@
 # AmnaF_Assignment-1
+from enum import Enum
+
+
+class OrderStatus(Enum):
+    PROCESSING = "Processing"
+    SHIPPED = "Shipped"
+    DELIVERED = "Delivered"
+
+
+class Customer:
+    def __init__(self, name, email, phone, address, customer_id):
+        self._name = name
+        self._email = email
+        self._phone = phone
+        self._address = address
+        self._customer_id = customer_id
+
+    def get_name(self):
+        return self._name
+
+    def set_name(self, name):
+        self._name = name
+
+    def get_customer_id(self):
+        return self._customer_id
+
+    def set_customer_id(self, customer_id):
+        self._customer_id = customer_id
+
+    def get_email(self):
+        return self._email
+
+    def set_email(self, email):
+        self._email = email
+
+    def place_order(self):
+        pass  # Function to place an order
+
+
+class Item:
+    def __init__(self, item_code, description, unit_price, quantity):
+        self._item_code = item_code
+        self._description = description
+        self._unit_price = unit_price
+        self._quantity = quantity
+
+    def get_item_code(self):
+        return self._item_code
+
+    def set_item_code(self, item_code):
+        self._item_code = item_code
+
+    def get_description(self):
+        return self._description
+
+    def set_description(self, description):
+        self._description = description
+
+    def get_price(self):
+        return self._unit_price
+
+    def set_price(self, unit_price):
+        self._unit_price = unit_price
+
+    def get_quantity(self):
+        return self._quantity
+
+    def set_quantity(self, quantity):
+        self._quantity = quantity
+
+
+class DeliveryOrder:
+    def __init__(self, order_id, reference_num, delivery_date, total_weight, total_cost, status):
+        self._order_id = order_id
+        self._reference_num = reference_num
+        self._delivery_date = delivery_date
+        self._total_weight = total_weight
+        self._total_cost = total_cost
+        self._status = status
+        self._items = []
+
+    def add_item(self, item):
+        self._items.append(item)
+
+    def get_order_details(self):
+        return {
+            "Order ID": self._order_id,
+            "Reference": self._reference_num,
+            "Delivery Date": self._delivery_date,
+            "Total Weight": self._total_weight,
+            "Total Cost": self._total_cost,
+            "Status": self._status.value
+        }
+
+    def set_status(self, status):
+        if isinstance(status, OrderStatus):
+            self._status = status
+
+
+class Employee:
+    def __init__(self, employee_id, name):
+        self._employee_id = employee_id
+        self._name = name
+
+    def get_employee_id(self):
+        return self._employee_id
+
+    def set_employee_id(self, employee_id):
+        self._employee_id = employee_id
+
+    def get_name(self):
+        return self._name
+
+    def set_name(self, name):
+        self._name = name
+
+    def manage_items(self, order):
+        pass  # Function to manage items in an order
+
+
+class DeliveryAgent(Employee):
+    def __init__(self, agent_id, name):
+        super().__init__(agent_id, name)
+        self._agent_id = agent_id
+
+    def get_agent_id(self):
+        return self._agent_id
+
+    def set_agent_id(self, agent_id):
+        self._agent_id = agent_id
+
+    def update_delivery_info(self, order_id):
+        pass  # Function to update delivery info
+
+
+class DeliveryNote:
+    def __init__(self, note_id, reference_number, date):
+        self._note_id = note_id
+        self._reference_number = reference_number
+        self._date = date
+
+    def get_note_id(self):
+        return self._note_id
+
+    def set_note_id(self, note_id):
+        self._note_id = note_id
+
+    def print_note(self):
+        pass  # Function to print the delivery note
+
+
+# Object Creation
+customer1 = Customer("Amna", "amna.fahed.05@hotmail.com", "123456789", "Das street", 202304185)
+item1 = Item(89, "makeup abg", 50.00, 1)
+order1 = DeliveryOrder(100, "REF123", "2025-03-05", 1.5, 55.50, OrderStatus.PROCESSING)
+order1.add_item(item1)
+
+delivery_agent = DeliveryAgent(101, "Mohammed")
+delivery_note = DeliveryNote(301, "AB260", "2025-03-05")
+
+print(order1.get_order_details())
+![image](https://github.com/user-attachments/assets/791e430b-b177-4121-bd5c-1c2bcc82b082)
