@@ -160,4 +160,4 @@ delivery_agent = DeliveryAgent(101, "Mohammed")
 delivery_note = DeliveryNote(301, "AB260", "2025-03-05")
 
 print(order1.get_order_details())
-![image](https://github.com/user-attachments/assets/791e430b-b177-4121-bd5c-1c2bcc82b082)
+
